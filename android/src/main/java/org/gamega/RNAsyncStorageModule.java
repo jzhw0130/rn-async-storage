@@ -56,7 +56,7 @@ public class RNAsyncStorageModule extends ReactContextBaseJavaModule {
      @ReactMethod
      public void getItem(String key, Promise promise){
          try {
-             SharedPreferences sharedPref = getCurrentActivity().getPreferences(Context.MODE_PRIVATE);
+             SharedPreferences sharedPref = reactContext.getSharedPreferences("milo", Context.MODE_PRIVATE);
              String value = sharedPref.getString(key, null);
              Log.d("storage/getItem", key+"");
              Log.d("storage/getItem", value+"");
@@ -73,7 +73,7 @@ public class RNAsyncStorageModule extends ReactContextBaseJavaModule {
      @ReactMethod
      public void clear(Promise promise){
          try {
-             SharedPreferences sharedPref = getCurrentActivity().getPreferences(Context.MODE_PRIVATE);
+             SharedPreferences sharedPref = reactContext.getSharedPreferences("milo", Context.MODE_PRIVATE);
              SharedPreferences.Editor editor = sharedPref.edit();
              editor.clear();
              editor.commit();
